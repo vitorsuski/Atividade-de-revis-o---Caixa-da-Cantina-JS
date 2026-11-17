@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Caixa da Cantina</title>
+</head>
+<body>
+    <h1>Caixa da Cantina</h1>
+    <p>Abra o console (F12) para ver o recibo.</p>
+
+    <script>
+/*
+  CAIXA DA CANTINA JS
+  Autor(es): João Pedro Muniz e Vitor Suski
+  Turma: 1ºA
+
+  RESPOSTAS DO PASSO 6
+
+  1) Sem o Number() no codigo:
+  O programa não reconheceu os códigos porque o prompt()
+  retorna um texto (string), enquanto os cases do switch
+  utilizam números. Por isso, nenhum código foi reconhecido.
+
+  2) Sem o break no case 1:
+  Apareceram dois itens no recibo e o subtotal foi R$ 11,00.
+  Isso aconteceu porque, sem o break, o programa continuou
+  executando o próximo case, adicionando também o Suco.
+
+  3) HTML, JavaScript e a camada que falta:
+  O HTML é responsável pela estrutura da página, como o título
+  e o parágrafo. O JavaScript é responsável pelas ações,
+  perguntas e cálculos do programa. A camada que falta é o CSS,
+  que serve para definir a aparência da página, como cores,
+  fontes e organização dos elementos.
+
+  4) Tipagem dinâmica e tipagem fraca, com exemplos:
+
+  Tipagem dinâmica:
+  total = "dez reais";
+  Isso mostra que uma variável pode receber valores de tipos
+  diferentes durante a execução do JavaScript.
+
+  Tipagem fraca:
+  total = 10 + "5";
+  Isso mostra que o JavaScript converte automaticamente
+  os tipos em algumas operações, resultando no texto "105".
+*/
+     let nomeCliente = prompt("Digite o nome do cliente:");
+
+let qtdItens = Number(prompt("Quantos itens deseja comprar?"));
+
+let itens = [];
+
+let total = 0;
+
+  
+for (let i = 1; i <= qtdItens; i++) {
+
+    let codigo = Number(prompt(`Digite o código do item ${i}:
+1 - Salgado
+2 - Suco
+3 - Pão de queijo
+4 - Bolo`));
+
+    switch (codigo) {
+
+        case 1:
+            itens.push("Salgado");
+            total += 6.00;
+            break;
+
+        case 2:
+            itens.push("Suco");
+            total += 5.00;
+            break;
+
+        case 3:
+            itens.push("Pão de queijo");
+            total += 4.50;
+            break;
+
+        case 4:
+            itens.push("Bolo");
+            total += 7.00;
+            break;
+
+        default:
+            console.log(`Código ${codigo} inválido: item ignorado`);
+    }
+}
+
+if (itens.length === 0) {
+
+    console.log("Nenhum item válido. Pedido cancelado.");
+
+} else {
+
+    let desconto = 0;
+
+    if (total >= 20) {
+        desconto = total * 0.10;
+    }
+
+    let totalPagar = total - desconto;
+
+    console.log(`===== CANTINA JS =====
+Cliente: ${nomeCliente}
+Itens (${itens.length}): ${itens.join(", ")}
+Subtotal: R$ ${total.toFixed(2)}
+Desconto: R$ ${desconto.toFixed(2)}
+Total a pagar: R$ ${totalPagar.toFixed(2)}`);
+}
+
+
+</script>
+</body>
+</html>
